@@ -1,0 +1,162 @@
+<style>
+  /* CSS đơn giản để bảng dễ nhìn hơn */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Arial, sans-serif;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+
+  th {
+    background-color: #f2f2f2;
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  /* Định dạng màu sắc cho hàng chẵn/lẻ giống như trong hình ảnh */
+  tr:nth-child(even) td {
+    color: blue;
+  }
+  
+  tr:nth-child(odd):not(:first-child) td {
+    color: red;
+  }
+
+  /* Làm cho tiêu đề màu đen */
+  tr:first-child th {
+    color: black;
+  }
+</style>
+
+<table>
+  <thead>
+    <tr>
+      <th>Day</th>
+      <th>Outlook</th>
+      <th>Temp</th>
+      <th>Humidity</th>
+      <th>Wind</th>
+      <th>Play?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Sunny</td>
+      <td>Hot</td>
+      <td>High</td>
+      <td>Weak</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Sunny</td>
+      <td>Hot</td>
+      <td>High</td>
+      <td>Strong</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Overcast</td>
+      <td>Hot</td>
+      <td>High</td>
+      <td>Weak</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Rain</td>
+      <td>Mild</td>
+      <td>High</td>
+      <td>Weak</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Rain</td>
+      <td>Cool</td>
+      <td>Normal</td>
+      <td>Weak</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Rain</td>
+      <td>Cool</td>
+      <td>Normal</td>
+      <td>Strong</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Overcast</td>
+      <td>Cool</td>
+      <td>Normal</td>
+      <td>Weak</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Sunny</td>
+      <td>Mild</td>
+      <td>High</td>
+      <td>Weak</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Sunny</td>
+      <td>Cool</td>
+      <td>Normal</td>
+      <td>Weak</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>Rain</td>
+      <td>Mild</td>
+      <td>Normal</td>
+      <td>Strong</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>Sunny</td>
+      <td>Mild</td>
+      <td>Normal</td>
+      <td>Strong</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>Overcast</td>
+      <td>Mild</td>
+      <td>High</td>
+      <td>Strong</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>Overcast</td>
+      <td>Hot</td>
+      <td>Normal</td>
+      <td>Weak</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>Rain</td>
+      <td>Mild</td>
+      <td>High</td>
+      <td>Strong</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+</table>

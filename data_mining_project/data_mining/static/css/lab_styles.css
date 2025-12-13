@@ -1,0 +1,173 @@
+/* static/css/lab_styles.css */
+
+/* --- 1. Typography & Global --- */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f7fa; /* Light background */
+    padding-top: 56px; /* Space for fixed navbar */
+}
+
+.page-title {
+    color: #1f3c88 !important; /* Deep academic blue */
+    font-weight: 700;
+}
+
+/* --- 2. Top Navigation Bar (Navbar) --- */
+#main-navbar {
+    background: linear-gradient(to right, #0f2027, #203a43); /* Dark blue gradient */
+    border-bottom: 2px solid #4e89ae;
+}
+
+#main-navbar .navbar-brand {
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+#main-navbar .nav-link {
+    color: white !important;
+    padding: 0.5rem 1rem;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+#main-navbar .nav-link:hover {
+    color: #f4d160 !important; /* Accent color on hover */
+}
+
+/* Navbar Hover Underline Effect */
+#main-navbar .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #4e89ae;
+    transition: width 0.3s ease-out, left 0.3s ease-out;
+}
+
+#main-navbar .nav-link:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+
+/* --- 3. Sidebar --- */
+#sidebar-wrapper {
+    min-width: 250px;
+    max-width: 250px;
+    background-color: #203a43 !important; /* Darker than body */
+    height: 100vh;
+    position: fixed;
+    top: 56px; /* Below the navbar */
+    transition: all 0.3s ease;
+}
+
+.sidebar-heading {
+    color: #f4d160 !important; /* Accent */
+    font-weight: bold;
+}
+
+.sidebar-link {
+    color: #a0a8b4 !important;
+    border: none !important;
+    transition: all 0.3s ease;
+}
+
+.sidebar-link:hover {
+    background-color: #2a4c58 !important;
+    color: #ffffff !important;
+    transform: translateX(5px);
+}
+
+.active-algo {
+    background-color: #1f3c88 !important; /* Deep academic blue */
+    color: white !important;
+    border-left: 5px solid #4e89ae !important;
+}
+
+
+/* --- 4. Main Content Area --- */
+#page-content-wrapper {
+    width: 100%;
+    margin-left: 250px; /* Space for sidebar */
+    padding: 20px;
+    transition: margin 0.3s ease;
+}
+
+/* --- 5. Card & Result Styles --- */
+.dataset-card, .parameter-card, .result-metric-card, .result-table-card, .result-viz-card {
+    border: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.dataset-card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Execution Button Style */
+.btn-run-algo {
+    background: linear-gradient(45deg, #1f3c88, #4e89ae); /* Gradient primary button */
+    border: none;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    transform: scale(1);
+    box-shadow: 0 4px 10px rgba(31, 60, 136, 0.4);
+}
+
+.btn-run-algo:hover {
+    transform: scale(1.03); /* Hover scale effect */
+    box-shadow: 0 6px 15px rgba(31, 60, 136, 0.6);
+    background: linear-gradient(45deg, #2447a1, #5d9dbe);
+}
+
+/* Ripple Click Effect (CSS only, simplified) */
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.ripple:active:after {
+    transform: scale(200);
+    opacity: 1;
+    transition: 0s;
+}
+
+
+/* Result Metrics Styling */
+#metric_accuracy {
+    color: #28a745; /* Success Green */
+}
+
+/* Responsive adjustment for sidebar */
+@media (max-width: 992px) {
+    #sidebar-wrapper {
+        margin-left: -250px;
+    }
+    #page-content-wrapper {
+        margin-left: 0;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+        margin-left: 0;
+    }
+    #wrapper.toggled #page-content-wrapper {
+        margin-left: 250px;
+    }
+}
