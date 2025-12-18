@@ -7,7 +7,7 @@ from .service.classification_decisionTrees_views import (
 )
 
 urlpatterns = [
-    # path('', views.hello_world, name='index'),
+    # URL Cho API Dự Đoán
     path('predict/gini/', predict_gini_view, name='api_predict_gini'),
     path('predict/id3/', predict_id3_view, name='api_predict_id3'),
     path('predict/naivebayes/', predict_bayes_view, name='api_predict_bayes'),
