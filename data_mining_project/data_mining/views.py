@@ -10,7 +10,7 @@ def index_view(request: HttpRequest):
         'project_name': 'Thực hành các thuật toán đã học trên Python'
     })
 
-# Hàm View cho trang Lab Cây Quyết định (lab_decision_tree.html)
+# Hàm View cho trang phân lớp, Cây Quyết định (lab_decision_tree.html)
 def decision_tree_lab_view(request: HttpRequest):
     """Render trang Lab riêng cho Phân lớp Cây Quyết định."""
     return render(request, 'lab_decision_tree.html', {
