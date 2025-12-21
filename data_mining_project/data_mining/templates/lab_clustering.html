@@ -1,0 +1,142 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid mt-4 pt-5 algorithm-page">
+    <div class="row">
+        
+        <div class="col-12 mb-4">
+            <h1 class="page-title text-primary fw-bold">
+                <i class="fas fa-project-diagram me-2"></i> 4. Gom cụm - K-Means
+            </h1>
+            <p class="text-muted">Sử dụng thuật toán K-Means để gom cụm các điểm dữ liệu.</p>
+        </div>
+
+        <div class="col-lg-5 mb-4">
+            <div class="card shadow-sm h-100 dataset-card">
+                <div class="card-header bg-primary text-white">
+                    <i class="fas fa-database me-2"></i>Nhập dữ liệu và cấu hình
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-secondary">Hướng dẫn:</h5>
+                    <ul class="small text-muted">
+                        <li>Nhập các điểm dữ liệu (tọa độ x, y)</li>
+                        <li>Chọn số cụm k (k >= 1 và k <= số điểm)</li>
+                        <li>Click "CHẠY K-MEANS" để thực hiện gom cụm</li>
+                    </ul>
+
+                    <hr>
+                    
+                    <h5 class="card-title text-secondary">Ví dụ dữ liệu:</h5>
+                    <div class="mt-3">
+                        <button class="btn btn-sm btn-outline-primary mb-2" onclick="loadExample1()">
+                            <i class="fas fa-file-import me-1"></i> Bài 1: k=2 (4 điểm)
+                        </button>
+                        <button class="btn btn-sm btn-outline-primary mb-2" onclick="loadExample2()">
+                            <i class="fas fa-file-import me-1"></i> Bài 2: k=3 (9 điểm)
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-7 mb-4">
+            <div class="card shadow-sm h-100 parameter-card">
+                <div class="card-header bg-primary text-white">
+                    <i class="fas fa-sliders-h me-2"></i> Nhập dữ liệu và chạy thuật toán
+                </div>
+                <div class="card-body">
+                    <form id="clustering_form" method="post" action="#">
+                        {% csrf_token %}
+                        
+                        <div class="mb-4">
+                            <label class="form-label fw-bold"><i class="fas fa-hashtag me-1"></i> Số cụm (k)</label>
+                            <input type="number" class="form-control" name="k" id="k_input" 
+                                   min="1" value="2" required>
+                            <small class="text-muted">Số cụm phải >= 1 và <= số điểm</small>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold"><i class="fas fa-list me-1"></i> Danh sách điểm</label>
+                            <div id="points_container">
+                                <!-- Điểm sẽ được thêm động ở đây -->
+                            </div>
+                            <button type="button" class="btn btn-sm btn-success mt-2" onclick="addPoint()">
+                                <i class="fas fa-plus me-1"></i> Thêm điểm
+                            </button>
+                            <button type="button" class="btn btn-sm btn-danger mt-2" onclick="clearPoints()">
+                                <i class="fas fa-trash me-1"></i> Xóa tất cả
+                            </button>
+                        </div>
+                        
+                        <div class="mt-4 text-center">
+                            <button type="submit" id="run_algo_btn" class="btn btn-lg btn-run-algo ripple">
+                                <i class="fas fa-play me-2"></i> CHẠY K-MEANS
+                            </button>
+                        </div>
+                        
+                        <div id="loading_progress" class="mt-3" style="display:none;">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%;">Đang chạy thuật toán...</div>
+                            </div>
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-12 mt-4" id="result_section" style="display:none;">
+            <h2 class="text-primary fw-bold mb-3"><i class="fas fa-chart-line me-2"></i> Kết Quả Gom Cụm</h2>
+            <div class="row" id="results_container">
+                
+                <div class="col-lg-6 mb-4">
+                    <div class="card shadow result-metric-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-secondary"><i class="fas fa-info-circle me-2"></i> Thông tin kết quả</h5>
+                            <div id="result_info" class="mt-3">
+                                <!-- Thông tin sẽ được hiển thị ở đây -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mb-4">
+                    <div class="card shadow result-table-card">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-chart-pie me-2"></i> Biểu đồ kết quả</h5>
+                            <div style="position: relative; height: 400px;">
+                                <canvas id="clustering_chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 mb-4">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-table me-2"></i> Chi tiết các cụm</h5>
+                            <div id="clusters_detail" class="mt-3">
+                                <!-- Chi tiết cụm sẽ được hiển thị ở đây -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Thêm Chart.js cho biểu đồ -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<!-- Thêm SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/clustering_handler.js' %}"></script>
+{% endblock %}
+
