@@ -50,8 +50,8 @@
                 <a href="{% url 'decision_tree_lab' %}" class="list-group-item list-group-item-action bg-dark text-white sidebar-link {% if request.resolver_match.url_name == 'decision_tree_lab' %}active-algo{% endif %}">
                     <i class="fas fa-sitemap me-2"></i> 3. Phân lớp - cây Quyết định
                 </a>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white sidebar-link">
-                    <i class="fas fa-cube me-2"></i> 4. Gom cụm
+                <a href="{% url 'clustering_lab' %}" class="list-group-item list-group-item-action bg-dark text-white sidebar-link {% if request.resolver_match.url_name == 'clustering_lab' %}active-algo{% endif %}">
+                    <i class="fas fa-cube me-2"></i> 4. Gom cụm - K-Means
                 </a>
             </div>
         </div> 

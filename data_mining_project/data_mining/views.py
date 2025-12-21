@@ -17,3 +17,10 @@ def decision_tree_lab_view(request: HttpRequest):
         'page_title': 'Phân lớp Cây Quyết định Lab'
     })
 
+# Hàm View cho trang gom cụm K-Means (lab_clustering.html)
+def clustering_lab_view(request: HttpRequest):
+    """Render trang Lab riêng cho Gom cụm K-Means."""
+    return render(request, 'lab_clustering.html', {
+        'page_title': 'Gom cụm K-Means Lab'
+    })
+
